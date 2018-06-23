@@ -1,0 +1,10 @@
+#scoreboard {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#scoreboard p {
+    margin: 0;
+    text-align: right;
+}

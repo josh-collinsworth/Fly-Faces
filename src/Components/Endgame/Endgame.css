@@ -1,0 +1,54 @@
+#endgame {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    position: absolute;
+    z-index: 10000;
+    background: #01516e;
+    left: -200vw;
+    top: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+    box-sizing: border-box;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#endgame.ended{
+    left: 0;
+}
+
+#endgame > p, #endgame > h1 {
+    width: 100%;
+}
+
+#endgame > p {
+    margin-top: 0;
+    line-height: 1.4;
+}
+
+#endgame > p strong {
+    color: #f0ce15;
+}
+
+#endgame button {
+    margin-top: 1rem;
+}
+
+#endgame img {
+    width: 560px;
+    height: auto;
+    display: block;
+    margin: .5rem auto;
+    max-width: 100%;
+}
