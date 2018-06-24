@@ -74,7 +74,8 @@ class AnswerBox extends React.Component {
                 || (fullName === 'Aaron Maan' && entered.match(/^Coke ?milk/i))
                 || (fullName === 'Joey Teng' && entered.match(/^Croix ?boi/i))
                 || (fullName === 'Juan Aguero' && entered.match(/^Obi Juan/i))
-                || (fullName === 'Beth Haubert' && entered === '🐈💨'))
+                || (fullName === 'Beth Haubert' && entered === '🐈💨')
+                || (fullName === 'T-Rave' && entered === 'T-Rave'))
             && this.props.state.mode !== 'expert')
 
         ){
