@@ -41,6 +41,11 @@ class GameBoard extends React.Component {
             final_countdown: 15,
             the_end: false
         }
+        window.onbeforeunload = (e) => {
+            if(!this.state.the_end){
+                return "This game is over if you leave the page. You sure?";
+            }
+        };
     }
     handleModeChange = (e) => {
         this.setState({ mode: e.target.value });
@@ -57,9 +62,6 @@ class GameBoard extends React.Component {
         this.setRepeatCount();
         setTimeout(()=>{console.log(this.state.avoid_repeats)},50)
     }
-    // handleLengthChange = (e) => {
-    //     this.setState({ final_countdown: (e.target.value - (this.state.score.right + this.state.score.wrong)) });
-    // }
     setRepeatCount = (e) => {
         setTimeout(()=>{
             if(this.state.filter){
@@ -85,31 +87,13 @@ class GameBoard extends React.Component {
         this.randomSelection({ right: 0, wrong: 0 });
         setTimeout(()=>{
             this.setState({ final_countdown: this.state.final_countdown + 1 });
-            // const options = document.querySelector('#options');
-            // options.classList.contains('options-showing') ? options.classList.remove('options-showing') : options.classList.add('options-showing');
         }, 20);
         setTimeout(()=>{
             const options = document.querySelector('#options');
             options.style.display = 'none';
         },500)
     }
-    // handleNarrowChange = (e) => {
-    //     const filterBox = document.querySelector('#team-filter');
-    //     if (this.state.narrow) {
-    //         this.setState({ narrow: false });
-    //         filterBox.disabled = false;
-    //     } else { 
-    //         this.setState({ narrow: true, filter: false });
-    //         if(this.state.avoid_repeats){ 
-    //             this.setState({ repeat_limit: this.state.narrow_count }) 
-    //         }
-    //         filterBox.value = 'none';
-    //         filterBox.disabled = true;
-    //     }
-    // }
-    // handleNarrowNumberChange = (e) => {
-    //     this.setState({narrow_count: e.target.value});
-    // }
+
     handleGameModeChange = (e) => {
         this.setState({ game_mode: e.target.value });
         if(e.target.value !== 'team'){

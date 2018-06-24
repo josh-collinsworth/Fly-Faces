@@ -22,12 +22,6 @@ class Options extends React.Component {
     handleRepeatsChange = (e) => {
         this.props.handleRepeatsChange(e);
     }
-    // handleNarrowChange = (e) => {
-    //     this.props.handleNarrowChange(e);
-    // }
-    // handleNarrowNumberChange = (e) => {
-    //     this.props.handleNarrowNumberChange(e);
-    // }
     handleNewGame = () => {
         if (!this.state.ready) {
             this.setState({ ready: true });
@@ -36,9 +30,6 @@ class Options extends React.Component {
             this.props.newGame();
          }
     }
-    // handleLengthChange = (e) => {
-    //     this.props.handleLengthChange(e);
-    // }
     handleGameModeChange = (e) => {
         this.props.handleGameModeChange(e);
     }
@@ -148,15 +139,6 @@ class Options extends React.Component {
 
                     </section>
 
-                    {/* <h2>Game length: {this.props.state.final_countdown + this.props.state.score.right + this.props.state.score.wrong} <small>({this.props.state.final_countdown} to go.)</small></h2> */}
-
-                    {/* <div id="game-length-group" className="option-group">
-                        <input id="game-length" type="range" min={this.props.state.score.right + this.props.state.score.wrong + 1} max={this.props.state.fly_faces.length} onChange={this.handleLengthChange}/>
-                        <label htmlFor="game-length"></label>
-                    </div>   */}
-
-                    {/* <hr /> */}
-
                     <hr />
 
                     <section>
@@ -180,11 +162,6 @@ class Options extends React.Component {
                                 <label htmlFor="colorize" >{this.props.state.colorize === true ? checkedBox() : uncheckedBox()}Randomize colors&ensp;<small>(More fun; less legible)</small></label>
                             </div>
 
-                            {/* <div id="narrow-group" className="option-group">
-                                <input type="checkbox" id="narrow" onChange={this.handleNarrowChange} checked={this.props.state.narrow}/>
-                                <label htmlFor="narrow" >{this.props.state.narrow === true ? checkedBox() : uncheckedBox()}Only show most recent hires</label>
-                                {this.props.state.narrow === true ? <div id="narrow-number-group" className="option-group"><label htmlFor="narrow-number">Show most recent: </label><input type="number" id="narrow-number" step="1" min="10" max="100" onChange={this.handleNarrowNumberChange} value={this.props.state.narrow_count}/></div> : null }
-                            </div> */}
                         </div>
 
                     </section>
