@@ -55,10 +55,10 @@ class AnswerBox extends React.Component {
         if (match.test(entered) 
             //Easter eggs follow; answer is correct under any of the below matches AND when 
             || (((fullName === 'John Schuncke' && (entered.match(/JohnD/i) || entered.match(/Phil Collins/i)))
-                || (fullName === 'Jamie Bell' && entered.match(/2lunch/i))
+                || (fullName === 'Jamie Bell' && entered.match(/2 ?lunch/i))
                 || (fullName === 'Will Mohon' && entered.match(/Jeff/i))
                 || (fullName === 'Elizabeth McGill' && entered.match(/Betty/i))
-                || (fullName === 'Trevan Hetzel' && (entered.match(/Bulldog/i) || entered.match(/The Abominable Snowman/i)))
+                || (fullName === 'Trevan Hetzel' && (entered.match(/Bulldog/i) || entered.match(/(The )?Abominable Snowman/i)))
                 || (fullName === 'Dan White' && entered.match(/Papa Blanco/i))
                 || (fullName === 'Luke Pettipoole' && entered.match(/Dadpoole/i))
                 || (fullName === 'Kaitlin Grohmann' && entered.match(/Rage ?Kage/i))
@@ -73,6 +73,7 @@ class AnswerBox extends React.Component {
                 || (fullName === 'Elise Fertwagner' && entered.match(/Josh Collinsworth/i))
                 || (fullName === 'Aaron Maan' && entered.match(/Coke ?milk/i))
                 || (fullName === 'Joey Teng' && entered.match(/Croix ?boi/i))
+                || (fullName === 'Juan Aguero' && entered.match(/Obi Juan/i))
                 || (fullName === 'Beth Haubert' && entered === '🐈💨'))
             && this.props.state.mode !== 'expert')
 
@@ -89,7 +90,7 @@ class AnswerBox extends React.Component {
         return(
             <React.Fragment>
             <div className="answer-container">
-                {!this.state.skipped ? <input className="answer-input" type="text" answer={this.props.name} onKeyUp={this.checkAnswer} autoFocus /> : ''}
+                {!this.state.skipped ? <input className="answer-input" type="text" answer={this.props.name} onKeyUp={this.checkAnswer} autoFocus placeholder="Who's this?" /> : ''}
                 <div id="answer-reveal-container">
                     <p><small>{this.state.answered || this.props.state.show_role ? this.props.role + ' – ' + this.handleDepartment() : ''}</small></p>
                     <p className="answer-reveal" role={this.props.role}> 

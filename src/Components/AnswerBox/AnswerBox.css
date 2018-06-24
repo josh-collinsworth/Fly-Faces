@@ -27,6 +27,10 @@
     border-bottom: 2px solid #fff;
 }
 
+.answer-input::placeholder {
+    color: rgba(255,255,255,.4);
+}
+
 .answer-input.warmer {
     font-weight: 700;
     color: #fefbea;
