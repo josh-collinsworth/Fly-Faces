@@ -22,9 +22,9 @@ class AnswerBox extends React.Component {
     }
     handleSkip = (e) => {
         this.setState({ skipped: true });
-        setTimeout(()=>{
-            console.log(this.state);
-        })
+        //setTimeout(()=>{
+            //console.log(this.state);
+        //})
     }
     checkAnswer = (e) => {
         if(e.which === 13 && this.state.answered){
@@ -92,11 +92,12 @@ class AnswerBox extends React.Component {
             <React.Fragment>
             <div className="answer-container">
                 {!this.state.skipped ? <input className="answer-input" type="text" answer={this.props.name} onKeyUp={this.checkAnswer} autoFocus placeholder="Who's this?" /> : ''}
-                <div id="answer-reveal-container">
+                <div id="answer-reveal-container" style={{marginTop: this.state.skipped ? '2.8rem' : ''}}>
                     <p><small>{this.state.answered || this.props.state.show_role ? this.props.role + ' – ' + this.handleDepartment() : ''}</small></p>
                     <p className="answer-reveal" role={this.props.role}> 
                         <strong>
-                            {this.state.answered || this.state.skipped ? this.props.name : ''}
+                            {this.state.answered && !this.state.skipped ? <span><span role="img" alt="" aria-label="Green checkbox">✅</span> {this.props.name} <span role="img" alt="" aria-label="Party confetti">🎉</span></span> : ''}
+                            {!this.state.answered && this.state.skipped ? <span><span role="img" alt="" aria-label="Red 'X'">❌</span> {this.props.name}</span> : ''}
                         </strong>
                     </p>
                 </div>

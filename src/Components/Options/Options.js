@@ -36,6 +36,9 @@ class Options extends React.Component {
     handleColorize = () => {
         this.props.handleColorize();
     }
+    handleNewHires = () => {
+        this.props.handleNewHires();
+    }
     render() {
         const uncheckedRadio = () => {
             return(
@@ -122,17 +125,17 @@ class Options extends React.Component {
                                 <div>
                                     <input type="radio" name="mode" id="beginner" value="beginner" onChange={this.handleModeChange} checked={this.props.state.mode === 'beginner'} />
                                     <label htmlFor="beginner">{this.props.state.mode === 'beginner' ? <span role="img" alt="" aria-label="Happy face">😄</span> : uncheckedRadio() }<strong>Beginner</strong></label>
-                                    {this.props.state.mode === 'beginner' ? <p className="added-info"><small>(Hints as you type, nicknames sometimes allowed)</small></p> : ''}
+                                    {this.props.state.mode === 'beginner' ? <p className="added-info"><small>(Hints as you type; some nicknames count)</small></p> : ''}
                                 </div>
                                 <div>
                                     <input type="radio" name="mode" id="normal" value="normal" onChange={this.handleModeChange} checked={this.props.state.mode === 'normal'} />
                                     <label htmlFor="normal">{this.props.state.mode === 'normal' ? <span role="img" alt="" aria-label="Slightly smiling face">🙂</span> : uncheckedRadio()}<strong>Normal</strong></label>
-                                    {this.props.state.mode === 'normal' ? <p className="added-info"><small>(No hints, first names only, nicknames sometimes allowed)</small></p> : ''}
+                                    {this.props.state.mode === 'normal' ? <p className="added-info"><small>(No hints; nicknames sometimes allowed; first names only)</small></p> : ''}
                                 </div>
                                 <div>
                                     <input type="radio" name="mode" id="expert" value="expert" onChange={this.handleModeChange} checked={this.props.state.mode === 'expert'} />
                                     <label htmlFor="expert">{this.props.state.mode === 'expert' ? <span role="img" alt="" aria-label="Screaming face">😱</span> : uncheckedRadio()}<strong>Expert</strong></label>
-                                    {this.props.state.mode === 'expert' ? <p className="added-info"><small>(No hints, first and last names, no nicknames)</small></p> : ''}
+                                    {this.props.state.mode === 'expert' ? <p className="added-info"><small>(No hints; no nicknames; first and last names required)</small></p> : ''}
                                 </div>
                             </div>
                         </div>
@@ -160,6 +163,11 @@ class Options extends React.Component {
                             <div id="colorize-group" className="option-group">
                                 <input type="checkbox" id="colorize" onChange={this.handleColorize} checked={this.props.state.colorize} />
                                 <label htmlFor="colorize" >{this.props.state.colorize === true ? checkedBox() : uncheckedBox()}Randomize colors&ensp;<small>(More fun; less legible)</small></label>
+                            </div>
+
+                            <div id="new-hires-group" className="option-group">
+                                <input type="checkbox" id="newhires" onChange={this.handleNewHires} checked={this.props.state.new_hires} />
+                                <label htmlFor="newhires" >{this.props.state.new_hires === true ? checkedBox() : uncheckedBox()}Include new hires&ensp;<small>(The brand-new folks who aren't on our team page yet)</small></label>
                             </div>
 
                         </div>
