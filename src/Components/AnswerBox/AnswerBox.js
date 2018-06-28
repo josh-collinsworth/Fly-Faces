@@ -41,9 +41,9 @@ class AnswerBox extends React.Component {
         const fullName = e.target.getAttribute('answer');
         const firstName = this.props.state.mode === 'expert' ? fullName : fullName.substr(0, fullName.indexOf(" "));
         const match = new RegExp(`^${firstName}$`, 'i');
+        const guess = e.target.value;
+        const guessMatch = new RegExp(`^${firstName}$`.substr(0, guess.length + 1), 'i');
         if(this.props.state.mode === 'beginner'){
-            const guess = e.target.value;
-            const guessMatch = new RegExp(`^${firstName}$`.substr(0, guess.length), 'i');
             if(guessMatch.test(guess)){
                 answerInput.classList.remove('colder');
                 answerInput.classList.add('warmer');   
