@@ -120,36 +120,36 @@ class GameBoard extends React.Component {
     handleColorize = () => {
         this.setState({ colorize: this.state.colorize ? false : true });
     }
-    handleNewHires = () => {
-        const domain = 'https://joshcollinsworth.com/wp-content/uploads/2018/06'
-        const trainees = [
-            { name: 'Andrew Strovers', img: `${domain}/andrew-stovers.png`, role: 'Software Engineer', department: 'product' },
-            { name: 'Erin Olson', img: `${domain}/erin-olson.jpg`, role: ' Scrum Master', department: 'product' },
-            { name: 'Jim Brown', img: `${domain}/jim-brown.jpg`, role: 'Director of Services', department: 'customer_experience' },
-            { name: 'Nick Kelley', img: `${domain}/nick-kelly.png`, role: 'Customer Success Specialist', department: 'customer_experience' },
-            { name: 'Erika Moon', img: `${domain}/erika-moon.png`, role: 'SDR', department: 'sales' },
-            { name: 'Angel Joseph Loza', img: `${domain}/angel-joseph-loza.jpg`, role: 'SDR', department: 'sales' },
-            { name: 'Sean Jackson', img: `${domain}/sean-jackson.png`, role: 'SDR', department: 'sales' },
-            { name: 'Zac Pollett', img: `${domain}/zac-pollett.jpeg`, role: 'SDR', department: 'sales' },
-            { name: 'Nguyen Tong', img: `${domain}/nguyen-tong.png`, role: 'Happiness Engineer', department: 'support' },
-            { name: 'Carolina Monteiro', img: `${domain}/carolina-monteiro.png`, role: 'Happiness Engineer', department: 'support' },
-            { name: 'Tyler Stokes', img: `${domain}/Tyler-Stokes.jpg`, role: 'Happiness Engineer', department: 'support' },
-            { name: 'Sam Toohey', img: `${domain}/sam-toohey.png`, role: 'Happiness Engineer', department: 'support' }
-        ];
+    // handleNewHires = () => {
+    //     const domain = 'https://joshcollinsworth.com/wp-content/uploads/2018/06'
+    //     const trainees = [
+    //         { name: 'Andrew Strovers', img: `${domain}/andrew-stovers.png`, role: 'Software Engineer', department: 'product' },
+    //         { name: 'Erin Olson', img: `${domain}/erin-olson.jpg`, role: ' Scrum Master', department: 'product' },
+    //         { name: 'Jim Brown', img: `${domain}/jim-brown.jpg`, role: 'Director of Services', department: 'customer_experience' },
+    //         { name: 'Nick Kelley', img: `${domain}/nick-kelly.png`, role: 'Customer Success Specialist', department: 'customer_experience' },
+    //         { name: 'Erika Moon', img: `${domain}/erika-moon.png`, role: 'SDR', department: 'sales' },
+    //         { name: 'Angel Joseph Loza', img: `${domain}/angel-joseph-loza.jpg`, role: 'SDR', department: 'sales' },
+    //         { name: 'Sean Jackson', img: `${domain}/sean-jackson.png`, role: 'SDR', department: 'sales' },
+    //         { name: 'Zac Pollett', img: `${domain}/zac-pollett.jpeg`, role: 'SDR', department: 'sales' },
+    //         { name: 'Nguyen Tong', img: `${domain}/nguyen-tong.png`, role: 'Happiness Engineer', department: 'support' },
+    //         { name: 'Carolina Monteiro', img: `${domain}/carolina-monteiro.png`, role: 'Happiness Engineer', department: 'support' },
+    //         { name: 'Tyler Stokes', img: `${domain}/Tyler-Stokes.jpg`, role: 'Happiness Engineer', department: 'support' },
+    //         { name: 'Sam Toohey', img: `${domain}/sam-toohey.png`, role: 'Happiness Engineer', department: 'support' }
+    //     ];
 
-        this.setState({ new_hires: this.state.new_hires ? false : true });
+    //     this.setState({ new_hires: this.state.new_hires ? false : true });
         
-            setTimeout(()=>{
-                if(this.state.new_hires){
-                    const finalArray = this.state.fly_faces;
-                    this.setState({ fly_faces: [...finalArray, ...trainees] });
-                } else {
-                    const newArray = this.state.fly_faces;
-                    trainees.forEach(trainee => newArray.pop());
-                    this.setState({ fly_faces: newArray });
-                }
-            }, 20)
-        }
+    //     setTimeout(()=>{
+    //         if(this.state.new_hires){
+    //             const finalArray = this.state.fly_faces;
+    //             this.setState({ fly_faces: [...finalArray, ...trainees] });
+    //         } else {
+    //             const newArray = this.state.fly_faces;
+    //             trainees.forEach(trainee => newArray.pop());
+    //             this.setState({ fly_faces: newArray });
+    //         }
+    //     }, 20)
+    // }
     theEnd = () => {
         this.setState({ the_end: true });
         const endgame = document.querySelector('#endgame');

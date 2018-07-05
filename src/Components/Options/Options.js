@@ -165,10 +165,10 @@ class Options extends React.Component {
                                 <label htmlFor="colorize" >{this.props.state.colorize === true ? checkedBox() : uncheckedBox()}Randomize colors&ensp;<small>(More fun; less legible)</small></label>
                             </div>
 
-                            <div id="new-hires-group" className="option-group">
+                            {/* <div id="new-hires-group" className="option-group">
                                 <input type="checkbox" id="newhires" onChange={this.handleNewHires} checked={this.props.state.new_hires} />
                                 <label htmlFor="newhires" >{this.props.state.new_hires === true ? checkedBox() : uncheckedBox()}Include new hires&ensp;<small>(The brand-new folks who aren't on our team page yet)</small></label>
-                            </div>
+                            </div> */}
 
                         </div>
 
