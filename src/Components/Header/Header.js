@@ -15,7 +15,7 @@ class Header extends React.Component {
                 <div className="progress" style={{ width: (100 / (this.props.countdown + this.props.score.right + this.props.score.wrong)) * (this.props.score.right + this.props.score.wrong) + 'vw' }}></div>
             </div>
             <header id="app-header">
-                <Scoreboard score={this.props.score} countdown={this.props.countdown}/>
+                <Scoreboard right={this.props.score.right} wrong={this.props.score.wrong} countdown={this.props.countdown}/>
             </header>
             </React.Fragment>
         );

@@ -10,6 +10,11 @@
     border: 2px solid #fff;
 }
 
+#next-button:focus {
+    animation: pulsate .8s ease-in-out infinite alternate;
+    border-color: #f0ce15;
+}
+
 #next-button.skip {
     color: #fff;
     background-color: rgba(0,0,0,.2);
@@ -23,5 +28,14 @@
     justify-content: center;
     align-content: center;
     align-items: center;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 

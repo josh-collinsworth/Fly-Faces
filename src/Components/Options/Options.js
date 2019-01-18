@@ -88,7 +88,7 @@ class Options extends React.Component {
                             <div className="option-group">
                                 <input type="radio" name="game-mode" id="team" value="team" onChange={this.props.handleGameModeChange} checked={this.props.state.game_mode === 'team'} />
                                 <label htmlFor="team" >{this.props.state.game_mode === 'team' ? <span role="img" alg="" aria-label="Target">🎯</span> : uncheckedRadio()}<strong>Team </strong></label>
-                                {this.props.state.game_mode === 'team' ? <p className="added-info"><small>Run through a single team</small></p> : ''}
+                                {this.props.state.game_mode === 'team' ? <p className="added-info"><small>Run through all members of a single team</small></p> : ''}
                             </div>
 
                             {this.props.state.game_mode === 'team' ? 
@@ -164,11 +164,6 @@ class Options extends React.Component {
                                 <input type="checkbox" id="colorize" onChange={this.handleColorize} checked={this.props.state.colorize} />
                                 <label htmlFor="colorize" >{this.props.state.colorize === true ? checkedBox() : uncheckedBox()}Randomize colors&ensp;<small>(More fun; less legible)</small></label>
                             </div>
-
-                            {/* <div id="new-hires-group" className="option-group">
-                                <input type="checkbox" id="newhires" onChange={this.handleNewHires} checked={this.props.state.new_hires} />
-                                <label htmlFor="newhires" >{this.props.state.new_hires === true ? checkedBox() : uncheckedBox()}Include new hires&ensp;<small>(The brand-new folks who aren't on our team page yet)</small></label>
-                            </div> */}
 
                         </div>
 

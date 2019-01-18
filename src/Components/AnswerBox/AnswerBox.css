@@ -2,13 +2,30 @@
     background: yellow;
 }
 
+.sad, .hooray {
+    font-size: 1.2em;
+}
+
+.fadeInUp {
+    animation: fadeInUp 0.5s cubic-bezier(0.03, 0.46, 0.28, 1.03) forwards;
+}
+
 .hooray {
-    animation: hooray .4s cubic-bezier(0.67,-0.08, 0.01, 1.32) forwards;
+    animation: hooray .3s cubic-bezier(0.67,-0.08, 0.01, 1.32) forwards;
+}
+
+.sad {
+    animation: sad .35s cubic-bezier(0.67,-0.08, 0.01, 1.32) forwards;
 }
 
 .answer-container {
     text-align: center;
     width: 100%;
+}
+
+.answer-reveal span {
+    opacity: 0;
+    display: inline-block;
 }
 
 .answer-container input, .answer-container p {
@@ -28,7 +45,7 @@
 }
 
 .answer-input::placeholder {
-    color: rgba(255,255,255,.4);
+    color: rgba(255,255,255,.6);
 }
 
 .answer-input.warmer {
@@ -37,7 +54,7 @@
 }
 
 .answer-input.colder {
-    color: #ef4e65;
+    text-decoration: line-through;
 }
 
 .answer-input:focus {
@@ -46,7 +63,6 @@
 
 #answer-reveal-container {
     margin: .5rem 0 2rem;
-    min-height: 2.7rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -56,24 +72,65 @@
 }
 
 #answer-reveal-container p {
-    margin: 0;
+    margin: .35em 0;
     width: 100%;
+}
+
+p#role {
+    line-height: 1;
+    margin: 0;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(.7em);
+        opacity: .2;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 @keyframes hooray {
     0% {
-        transform: scale(.7);
+        opacity: .5;
+        transform: scale(.4);
     }
-    40% {
-        transform: scale(1.2);
+    25% {
+        transform: scale(3);
     }
-    65% {
-        transform: scale(0.9);
+    60% {
+        transform: scale(0.8);
     }
-    85% {
-        transform: scale(1.1);
+    70% {
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(0.95);
     }
     100% {
+        opacity: 1;
         transform: scale(1);
+    }
+}
+
+@keyframes sad {
+    0% {
+        transform: translateY(0em);
+        opacity: .2;
+    }
+    40% {
+        transform: translateY(-.4em);
+    }
+    65% {
+        transform: translateY(0em);
+    }
+    85% {
+        transform: translateY(-.2em);
+    }
+    100% {
+        transform: translateY(0em);
+        opacity: 1;
     }
 }

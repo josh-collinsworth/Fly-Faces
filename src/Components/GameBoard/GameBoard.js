@@ -13,6 +13,8 @@ class GameBoard extends React.Component {
         this.state = {
             game_start: false,
 
+            loading: true,
+
             colorize: false,
             colors: ['#50c6db', '#51bb7b', '#f0ce15', '#f47820', '#ef4e65', '#e0368c', '#8350a0'],
             current_color: '#50c6db',
@@ -61,6 +63,12 @@ class GameBoard extends React.Component {
     handleRepeatsChange = (e) => {
         this.state.avoid_repeats === true ? this.setState({avoid_repeats: false}) : this.setState({avoid_repeats: true});
         this.setRepeatCount();
+    }
+    loadStart = () => {
+        this.setState({ loading: true });
+    }
+    loadFinish = () => {
+        this.setState({ loading: false });
     }
     setRepeatCount = (e) => {
         setTimeout(()=>{
@@ -120,40 +128,9 @@ class GameBoard extends React.Component {
     handleColorize = () => {
         this.setState({ colorize: this.state.colorize ? false : true });
     }
-    // handleNewHires = () => {
-    //     const domain = 'https://joshcollinsworth.com/wp-content/uploads/2018/06'
-    //     const trainees = [
-    //         { name: 'Andrew Strovers', img: `${domain}/andrew-stovers.png`, role: 'Software Engineer', department: 'product' },
-    //         { name: 'Erin Olson', img: `${domain}/erin-olson.jpg`, role: ' Scrum Master', department: 'product' },
-    //         { name: 'Jim Brown', img: `${domain}/jim-brown.jpg`, role: 'Director of Services', department: 'customer_experience' },
-    //         { name: 'Nick Kelley', img: `${domain}/nick-kelly.png`, role: 'Customer Success Specialist', department: 'customer_experience' },
-    //         { name: 'Erika Moon', img: `${domain}/erika-moon.png`, role: 'SDR', department: 'sales' },
-    //         { name: 'Angel Joseph Loza', img: `${domain}/angel-joseph-loza.jpg`, role: 'SDR', department: 'sales' },
-    //         { name: 'Sean Jackson', img: `${domain}/sean-jackson.png`, role: 'SDR', department: 'sales' },
-    //         { name: 'Zac Pollett', img: `${domain}/zac-pollett.jpeg`, role: 'SDR', department: 'sales' },
-    //         { name: 'Nguyen Tong', img: `${domain}/nguyen-tong.png`, role: 'Happiness Engineer', department: 'support' },
-    //         { name: 'Carolina Monteiro', img: `${domain}/carolina-monteiro.png`, role: 'Happiness Engineer', department: 'support' },
-    //         { name: 'Tyler Stokes', img: `${domain}/Tyler-Stokes.jpg`, role: 'Happiness Engineer', department: 'support' },
-    //         { name: 'Sam Toohey', img: `${domain}/sam-toohey.png`, role: 'Happiness Engineer', department: 'support' }
-    //     ];
 
-    //     this.setState({ new_hires: this.state.new_hires ? false : true });
-        
-    //     setTimeout(()=>{
-    //         if(this.state.new_hires){
-    //             const finalArray = this.state.fly_faces;
-    //             this.setState({ fly_faces: [...finalArray, ...trainees] });
-    //         } else {
-    //             const newArray = this.state.fly_faces;
-    //             trainees.forEach(trainee => newArray.pop());
-    //             this.setState({ fly_faces: newArray });
-    //         }
-    //     }, 20)
-    // }
     theEnd = () => {
         this.setState({ the_end: true });
-        const endgame = document.querySelector('#endgame');
-        endgame.classList.add('ended');
     }
     pickAFace = () => {
         if(this.state.final_countdown <= 0){
@@ -163,8 +140,6 @@ class GameBoard extends React.Component {
         let length = this.state.fly_faces.length - 1;
         let randomFace = {};
         const x = Math.floor(Math.random() * (length + 1));
-        // console.log(this.state.fly_faces[x]);
-        // console.log(this.state.mode, x);
         if (
             //Either there is no filter, or there is and the picked face matches the filter
             ((!this.state.filter || (this.state.fly_faces[x].department === this.state.filter)) 
@@ -182,7 +157,6 @@ class GameBoard extends React.Component {
             (this.state.game_mode !== 'newbies' || x >= (this.state.fly_faces.length - 50))
         ) {
             randomFace = this.state.fly_faces[x];
-            //console.log(randomFace);
             if(this.state.avoid_repeats){
                 let recentArray = this.state.recent_faces;
                 recentArray.push(x);
@@ -200,20 +174,15 @@ class GameBoard extends React.Component {
         this.setState({ random_face: randomFace });
     }
     randomSelection = (points) => {
-        // console.log(points);
         this.setState({score: points, final_countdown: this.state.final_countdown - 1, last_face: this.state.random_face})
-        //console.log(this.state.score);
         const loader = document.querySelector('#loader');
         if(this.state.colorize){
             const dot = document.querySelector(".loader-dot");
             loader.style.backgroundColor = this.state.current_color;
             dot.style.backgroundColor = this.state.current_color;
         }
-        if(!loader.classList.contains('visible')){
-            loader.classList.add('visible');
-            setTimeout(()=>{
-                loader.style.display = 'flex';
-            }, 20);
+        if(!this.state.loading){
+            this.loadStart();
         }
         setTimeout(()=>{
             if (this.state.colorize){
@@ -226,11 +195,7 @@ class GameBoard extends React.Component {
         }, 120);
     }
     initialize = () => {
-        const loader = document.querySelector('#loader');
-        loader.classList.add('visible');
-        setTimeout(() => {
-            loader.style.display = 'flex';
-        }, 20);
+        this.loadStart();
         setTimeout(() => {
             const url = 'https://getflywheel.com/wp-json/wp/v2/pages?slug=team';
             fetch(url)
@@ -252,7 +217,6 @@ class GameBoard extends React.Component {
                     const randomFace = finalArray[x];
 
                     this.setState({ random_face: randomFace, fly_faces: finalArray });
-                    //console.log(this.state.fly_faces);
                 });
         }, 200);
     }
@@ -266,7 +230,7 @@ class GameBoard extends React.Component {
                 <Endgame state={this.state}/>
                 <Options handleNewHires = {this.handleNewHires} handleColorize={this.handleColorize} handleGameModeChange={this.handleGameModeChange} state={this.state} handleModeChange={this.handleModeChange} handleRoleChange={this.handleRoleChange} handleFilterChange={this.handleFilterChange} handleRepeatsChange={this.handleRepeatsChange} handleNarrowChange={this.handleNarrowChange} handleNarrowNumberChange={this.handleNarrowNumberChange} newGame={this.newGame}/>
                 <Header score={this.state.score} countdown={this.state.final_countdown}/>
-                <Face name={this.state.random_face.name} image={this.state.random_face.img} role={this.state.random_face.role} department={this.state.random_face.department} key={this.state.random_face.name} state={this.state} next={this.randomSelection}  randomSelection={this.randomSelection}/>
+                <Face name={this.state.random_face.name} image={this.state.random_face.img} role={this.state.random_face.role} department={this.state.random_face.department} key={this.state.random_face.name} state={this.state} next={this.randomSelection}  randomSelection={this.randomSelection} loadStart={this.loadStart} loadFinish={this.loadFinish}/>
             </div>
         );
     }

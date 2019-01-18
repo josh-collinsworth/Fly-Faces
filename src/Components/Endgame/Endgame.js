@@ -18,7 +18,7 @@ class Endgame extends React.Component {
         const percent = (100 / (final.score.right + final.score.wrong) * final.score.right).toFixed(0);
         const mode = this.props.state.game_mode;
         return (
-            <div id="endgame">
+            <div id="endgame" className={this.props.state.the_end ? 'ended' : ''}>
                 <h1><span role="img" alt="" aria-label="Checkered flag">🏁</span> Finished! <span role="img" alt="" aria-label="Champagne">🍾</span></h1>
                 <p>Game mode: <strong>{mode.charAt(0).toUpperCase() + mode.substr(1)}{this.props.state.filter ? ' (' + this.prettifyString(this.props.state.filter) + ')' : ''}</strong>
                     <br />Difficulty: <strong>{this.prettifyString(this.props.state.mode)}</strong>
@@ -36,7 +36,7 @@ class Endgame extends React.Component {
                 {percent >= 10 && percent < 18 ? <p>You do know where you work…right? <span role="img" alt="" aria-label="Sunglasses">😳</span></p> : ''}
                 {percent < 10 ? <p><img src={isThis} alt="The butterfly meme: 'Is this a coworker?'"/>You just made Brett cry. </p> : ''}
 
-                <button onClick={this.handleNewGame}>New game!</button>
+                {this.props.state.the_end && <button onClick={this.handleNewGame} autofocus>New game!</button>}
             </div>
         );
     }

@@ -4,10 +4,7 @@ import AnswerBox from '../AnswerBox/AnswerBox';
 
 class Face extends React.Component {
     removeLoader = () => {
-        setTimeout(()=>{
-            const loader = document.querySelector('#loader');
-            loader.classList.remove('visible');
-        }, 120);
+        this.props.loadFinish();
     }
     render() {
         return (
