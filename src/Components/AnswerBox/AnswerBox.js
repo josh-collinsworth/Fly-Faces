@@ -102,8 +102,12 @@ class AnswerBox extends React.Component {
             }
         }
     }
+    focusNextButton = () => {
+        const nextButton = document.querySelector('#next-button');
+        nextButton && nextButton.focus();
+    }
     renderAnswer = () => {
-        document.querySelector('#next-button').focus();
+        this.focusNextButton();
         return (
             <p className="answer-reveal" role={this.props.role}>
                 <strong>
@@ -117,7 +121,7 @@ class AnswerBox extends React.Component {
         )
     }
     renderSkip = () => {
-        document.querySelector('#next-button').focus();
+        this.focusNextButton();
         return (
             <p className="answer-reveal" role={this.props.role}>
                 <strong>

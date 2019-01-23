@@ -56,7 +56,7 @@ class Options extends React.Component {
             )
         }
         return (
-            <aside id="options" className={this.props.state.game_start ? 'started' : ''}>
+            <aside id="options" className={this.props.state.game_start ? 'started' : ''} style={{display: this.props.game_start ? 'none' : 'flex'}}>
                 <div className="options-container">
                                     
                     <section id="game-mode-section">
