@@ -185,7 +185,9 @@ class GameBoard extends React.Component {
         setTimeout(() => {
             const authURL = 'https://getflywheel.namely.com/api/v1/oauth2/authorize?response_type=code&client_id=aLqEQUSDghqvKamgshUfsn5sxtpg9FsUGT3Mv0ZLRGyOSJOOp6F784uR6gTG3ucl&redirect_uri=https%3A%2F%2Ffly-faces.now.sh';
             
-            fetch(authURL).then(response => alert(response));
+            fetch(authURL, {
+                mode: "no-cors"
+            }).then(response => alert(response));
 
             // const url = 'https://getflywheel.namely.com/api/v1/profiles.json';
             // fetch(url)
