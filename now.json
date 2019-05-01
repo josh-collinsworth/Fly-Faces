@@ -1,3 +1,9 @@
 {
-    
+    "version": 2,
+    "alias": [
+        "fly-faces.now.sh"
+    ],
+    "github": {
+        "autoAlias": true
+    }
 }
