@@ -198,31 +198,28 @@ class GameBoard extends React.Component {
         this.loadStart();
         setTimeout(() => {
             
-            fetch('/api/').then(res => console.log(res));
+            const url = 'https://getflywheel.com/wp-json/wp/v2/pages?slug=team';
+            fetch(url)
+            .then(response => {
+                console.log(response);
+                if(response.ok){
+                    return response.json();
+                } else {
+                    document.write(response.status + ' ' + response.statusText);
+                }
+                return;
+            })
+            .then(jsonresponse => jsonresponse[0].acf.team_member)
+            .then(response => response.map(face => {
+                return { name: face.team_member_name, img: face.team_member_image.sizes.medium, role: face.team_member_role, department: face.team_member_department };
+            }))
+            .then(finalArray => {
+                let length = finalArray.length - 1;
+                const x = Math.floor(Math.random() * (length + 1));
+                const randomFace = finalArray[x];
 
-            console.log('just a change w/e')
-            // const url = 'https://getflywheel.namely.com/api/v1/profiles.json';
-            // fetch(url)
-            // .then(response => {
-            //     console.log(response);
-            //     if(response.ok){
-            //         return response.json();
-            //     } else {
-            //         document.write(response.status + ' ' + response.statusText);
-            //     }
-            //     return;
-            // })
-            // .then(jsonresponse => jsonresponse[0].acf.team_member)
-            // .then(response => response.map(face => {
-            //     return { name: face.team_member_name, img: face.team_member_image.sizes.medium, role: face.team_member_role, department: face.team_member_department };
-            // }))
-            // .then(finalArray => {
-            //     let length = finalArray.length - 1;
-            //     const x = Math.floor(Math.random() * (length + 1));
-            //     const randomFace = finalArray[x];
-
-            //     this.setState({ random_face: randomFace, fly_faces: finalArray });
-            // });
+                this.setState({ random_face: randomFace, fly_faces: finalArray });
+            });
         }, 200);
     }
     componentDidMount() {
