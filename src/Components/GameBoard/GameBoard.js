@@ -183,27 +183,32 @@ class GameBoard extends React.Component {
     initialize = () => {
         this.loadStart();
         setTimeout(() => {
-            const url = 'https://getflywheel.com/wp-json/wp/v2/pages?slug=team';
-            fetch(url)
-                .then(response => {
-                    if(response.ok){
-                        return response.json();
-                    } else {
-                        document.write(response.status + ' ' + response.statusText);
-                    }
-                    return;
-                })
-                .then(jsonresponse => jsonresponse[0].acf.team_member)
-                .then(response => response.map(face => {
-                    return { name: face.team_member_name, img: face.team_member_image.sizes.medium, role: face.team_member_role, department: face.team_member_department };
-                }))
-                .then(finalArray => {
-                    let length = finalArray.length - 1;
-                    const x = Math.floor(Math.random() * (length + 1));
-                    const randomFace = finalArray[x];
+            const authURL = 'https://getflywheel.namely.com/api/v1/oauth2/authorize?response_type=code&client_id=aLqEQUSDghqvKamgshUfsn5sxtpg9FsUGT3Mv0ZLRGyOSJOOp6F784uR6gTG3ucl&redirect_uri=https%3A%2F%2Ffly-faces.now.sh';
+            
+            fetch(authURL).then(response => alert(response));
 
-                    this.setState({ random_face: randomFace, fly_faces: finalArray });
-                });
+            // const url = 'https://getflywheel.namely.com/api/v1/profiles.json';
+            // fetch(url)
+            // .then(response => {
+            //     console.log(response);
+            //     if(response.ok){
+            //         return response.json();
+            //     } else {
+            //         document.write(response.status + ' ' + response.statusText);
+            //     }
+            //     return;
+            // })
+            // .then(jsonresponse => jsonresponse[0].acf.team_member)
+            // .then(response => response.map(face => {
+            //     return { name: face.team_member_name, img: face.team_member_image.sizes.medium, role: face.team_member_role, department: face.team_member_department };
+            // }))
+            // .then(finalArray => {
+            //     let length = finalArray.length - 1;
+            //     const x = Math.floor(Math.random() * (length + 1));
+            //     const randomFace = finalArray[x];
+
+            //     this.setState({ random_face: randomFace, fly_faces: finalArray });
+            // });
         }, 200);
     }
     componentDidMount() {
