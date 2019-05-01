@@ -93,7 +93,13 @@ class GameBoard extends React.Component {
             game_start: true
         });
         this.randomSelection({ right: 0, wrong: 0 });
-        this.setState({ final_countdown: this.state.final_countdown });
+        setTimeout(()=>{
+            this.setState({ final_countdown: this.state.final_countdown + 1 });
+        }, 20);
+        setTimeout(()=>{
+            const options = document.querySelector('#options');
+            options.style.display = 'none';
+        },500)
     }
 
     handleGameModeChange = (e) => {
@@ -169,7 +175,15 @@ class GameBoard extends React.Component {
     }
     randomSelection = (points) => {
         this.setState({score: points, final_countdown: this.state.final_countdown - 1, last_face: this.state.random_face})
-        !this.state.loading && this.loadStart();
+        const loader = document.querySelector('#loader');
+        if(this.state.colorize){
+            const dot = document.querySelector(".loader-dot");
+            loader.style.backgroundColor = this.state.current_color;
+            dot.style.backgroundColor = this.state.current_color;
+        }
+        if(!this.state.loading){
+            this.loadStart();
+        }
         setTimeout(()=>{
             if (this.state.colorize){
                 const color = Math.floor(Math.random() * this.state.colors.length);
@@ -219,7 +233,7 @@ class GameBoard extends React.Component {
             <div id="game-board">
                 <Loader state={this.state}/>
                 <Endgame state={this.state}/>
-                <Options handleNewHires={this.handleNewHires} handleColorize={this.handleColorize} handleGameModeChange={this.handleGameModeChange} state={this.state} handleModeChange={this.handleModeChange} handleRoleChange={this.handleRoleChange} handleFilterChange={this.handleFilterChange} handleRepeatsChange={this.handleRepeatsChange} handleNarrowChange={this.handleNarrowChange} handleNarrowNumberChange={this.handleNarrowNumberChange} newGame={this.newGame}/>
+                <Options handleNewHires = {this.handleNewHires} handleColorize={this.handleColorize} handleGameModeChange={this.handleGameModeChange} state={this.state} handleModeChange={this.handleModeChange} handleRoleChange={this.handleRoleChange} handleFilterChange={this.handleFilterChange} handleRepeatsChange={this.handleRepeatsChange} handleNarrowChange={this.handleNarrowChange} handleNarrowNumberChange={this.handleNarrowNumberChange} newGame={this.newGame}/>
                 <Header score={this.state.score} countdown={this.state.final_countdown}/>
                 <Face name={this.state.random_face.name} image={this.state.random_face.img} role={this.state.random_face.role} department={this.state.random_face.department} key={this.state.random_face.name} state={this.state} next={this.randomSelection}  randomSelection={this.randomSelection} loadStart={this.loadStart} loadFinish={this.loadFinish}/>
             </div>

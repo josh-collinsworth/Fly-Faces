@@ -3,10 +3,10 @@ import './Loader.css';
 
 const Loader = ({state}) => (
     
-    <div id="loader" className={state.loading ? 'visible' : ''} style={{ backgroundColor: state.colorize ? state.current_color : '#50c6db'}}>
+    <div id="loader" className={state.loading ? 'visible' : ''}>
         <div className="outer-loader">
             <div className="inner-loader">
-                <div className="loader-dot" style={{ backgroundColor: state.colorize ? state.current_color : '#50c6db' }}>
+                <div className="loader-dot">
                 </div>
             </div>
         </div>
