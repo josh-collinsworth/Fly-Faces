@@ -13,16 +13,6 @@
             "config": {
                 "distDir": "build"
             }
-        },
-        {
-            "src": "api.js",
-            "use": "@now/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/api(.*)",
-            "dest": "/api.js"
         }
     ]
 }
