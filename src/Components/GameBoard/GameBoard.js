@@ -187,7 +187,7 @@ class GameBoard extends React.Component {
             
             fetch(authURL, {
                 mode: "no-cors"
-            }).then(response => alert(response));
+            }).then(response => console.log(response));
 
             // const url = 'https://getflywheel.namely.com/api/v1/profiles.json';
             // fetch(url)
