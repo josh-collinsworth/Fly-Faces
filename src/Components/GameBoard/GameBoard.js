@@ -322,7 +322,7 @@ class GameBoard extends React.Component {
     render() {
         return (
             <div id="game-board">
-                <Loader state={this.state} appProtocol={this.props.appProtocol} appDomain={this.props.appDomain}/>
+                <Loader state={this.state}/>
                 <Endgame state={this.state} resetBoardForNewGame={this.resetBoardForNewGame}/>
                 <Options getReady={this.getReady} ready={this.state.ready} handleNewHires={this.handleNewHires} handleColorize={this.handleColorize} handleGameModeChange={this.handleGameModeChange} state={this.state} handleModeChange={this.handleModeChange} handleRoleChange={this.handleRoleChange} handleFilterChange={this.handleFilterChange} handleRepeatsChange={this.handleRepeatsChange} handleNarrowChange={this.handleNarrowChange} handleNarrowNumberChange={this.handleNarrowNumberChange} newGame={this.newGame}/>
                 <Header score={this.state.score} countdown={this.state.final_countdown}/>

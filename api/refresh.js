@@ -2,13 +2,11 @@ module.exports = (req, res) => {
 
     //This Node file reaches out to Namely when a refresh token is provided for quick authentication
 
-    //Change this for local development
-    const appURL = `https://fly-faces.now.sh`;
     const https = require('https');
     const url = require('url');
 
     let refreshToken = url.parse(req.url, true).query.refresh_token;
-    let body = encodeURI(`grant_type=refresh_token&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&refresh_token=${refreshToken}&redirect_uri=${appURL}`)
+    let body = encodeURI(`grant_type=refresh_token&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&refresh_token=${refreshToken}&redirect_uri=${process.env.APP_URL}`)
     
     let args = {
         hostname: `getflywheel.namely.com`,
