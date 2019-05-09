@@ -13,6 +13,7 @@
     justify-content: center;
     z-index: -1;
     transition: all .12s ease-in-out;
+    flex-wrap: wrap;
 }
 
 .visible, #loader.visible {
@@ -42,6 +43,11 @@
     height: 16px;
     border-radius: 16px;
     background: rgba(255,255,255,.9);
+}
+
+.loadingMessage {
+    width: 100%;
+    margin: 1rem auto;
 }
 
 @keyframes loader-rotate {

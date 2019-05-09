@@ -13,6 +13,10 @@
             "config": {
                 "distDir": "build"
             }
+        },
+        {
+            "src": "api/*.js",
+            "use": "@now/node"
         }
     ]
 }

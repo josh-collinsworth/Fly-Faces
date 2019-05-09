@@ -18,16 +18,6 @@ class AnswerBox extends React.Component {
             this.setState({skipWarn: false});   
         }, 150);
     }
-    handleDepartment = () => {
-        let department = this.props.department.charAt(0).toUpperCase() + this.props.department.slice(1);
-        if (department === 'Customer_experience') {
-            department = 'C.S.' 
-        }
-        if (department === 'Engineering') {
-            department = 'Product'
-        }
-        return department;
-    }
     handleSkip = () => {
         this.setState({ skipped: true });
     }
@@ -71,28 +61,23 @@ class AnswerBox extends React.Component {
                 || (((fullName === 'John Schuncke' && (entered.match(/^JohnD/i) || entered.match(/^Phil Collins/i)))
                     || (fullName === 'Jamie Bell' && entered.match(/^2 ?lunch/i))
                     || (fullName === 'Will Mohon' && entered.match(/^Jeff/i))
-                    || (fullName === 'Elizabeth McGill' && entered.match(/^Betty/i))
                     || (fullName === 'Trevan Hetzel' && (entered.match(/^Bulldog/i) || entered.match(/^(The )?Abominable Snowman/i)))
                     || (fullName === 'Dan White' && entered.match(/^Papa Blanco/i))
                     || (fullName === 'Luke Pettipoole' && entered.match(/^Dadpoole/i))
                     || (fullName === 'Kaitlin Grohmann' && entered.match(/^Rage ?Kage/i))
                     || (fullName === 'Donovan Roehr' && entered.match(/^Donny/i))
                     || (fullName === 'Kimberly Bailey' && entered.match(/^Kimbo( Slice)?/i))
-                    || (fullName === 'Dan Fitch' && entered.match(/^Dad Fish/i))
+                    || (fullName === 'Daniel Fitch' && entered.match(/^(Dad Fish|Dan)/i))
                     || (fullName === 'Eric Swanson' && entered.match(/^DJ ?Sweetlife/i))
-                    || (fullName === 'Aaron Hackworth' && entered.match(/^A-A-Ron/i))
-                    || (fullName === 'Jeremy Paavola' && entered.match(/^Jezza/i))
                     || (fullName === 'Genevieve Bachinski' && entered.match(/^Genny Cash/i))
                     || (fullName === 'Kristin Wittkamp' && entered.match(/^Stevie Kicks/i))
-                    || (fullName === 'Elise Fertwagner' && entered.match(/^Josh Collinsworth/i))
-                    || (fullName === 'Aaron Maan' && entered.match(/^Coke ?milk/i))
                     || (fullName === 'Joey Teng' && entered.match(/^Croix ?boi/i))
                     || (fullName === 'Juan Aguero' && entered.match(/^Obi Juan/i))
                     || (fullName === 'Win Tong' && entered.match(/^Nguyen/i))
                     || (fullName === 'Aaron Jasso' && entered.match(/^AJ/i))
+                    || (fullName === 'Eric Broulette' && entered.match(/^Brew/i))
                     || (fullName === 'Christopher Leah' && entered.match(/^Chris/i))
-                    || (fullName === 'Beth Haubert' && entered === '🐈💨') //RIP 😢
-                    || (fullName === 'T-Rave' && (entered === 'T-Rave' || entered.match(/^T-?Rave/i))))
+                    || (fullName === 'T-Rave Geary' && (entered === 'T-Rave' || entered.match(/^T-?Rave/i))))
                 && this.props.state.mode !== 'expert')
             ){
                 e.target.classList.add('winner');
@@ -108,9 +93,8 @@ class AnswerBox extends React.Component {
             <p className="answer-reveal" role={this.props.role}>
                 <strong>
                         {[...this.props.name].map((letter, index) => {
-                            return <span className="hooray" key={index} style={{ animationDelay: (index * 0.025) + 's' }}>{letter === ' ' ? '\u00a0' : letter}</span>
+                            return <span className="hooray" key={index} style={{ animationDelay: (index * 0.02) + 's' }}>{letter === ' ' ? '\u00a0' : letter}</span>
                         })}
-                    {/* &nbsp;<span className="hooray" style={{ animationDelay: ([...this.props.name].length + 10) * 0.025 + 's' }}role="img" alt="" aria-label="Green checkbox">✅</span>  */}
                     &nbsp;<span className="hooray" style={{ animationDelay: ([...this.props.name].length + 7) * 0.025 + 's', animationDuration: '.6s'}} role="img" alt="" aria-label="Party confetti">🎉</span>
                 </strong>
             </p>
@@ -137,7 +121,7 @@ class AnswerBox extends React.Component {
                 <div id="answer-reveal-container" >
                         {(this.state.answered && !this.state.skipped) && this.renderAnswer()}
                         {(!this.state.answered && this.state.skipped) && this.renderSkip()}
-                    <p id="role"><small>{this.state.answered || this.props.state.show_role ? this.props.role + ' – ' + this.handleDepartment() : ''}</small></p>
+                    <p id="role"><small>{this.state.answered || this.props.state.show_role ? this.props.role + ' – ' + this.props.department : ''}</small></p>
                 </div>
             </div>
             {this.props.state.the_end === false ? <NextButton state={this.props.state} randomSelection={this.props.randomSelection} answered={this.state.answered} score={this.props.state.score} skipped={this.state.skipped} handleSkip={this.handleSkip}/> : '' }

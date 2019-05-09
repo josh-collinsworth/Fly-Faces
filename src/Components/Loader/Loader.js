@@ -10,6 +10,8 @@ const Loader = ({state}) => (
                 </div>
             </div>
         </div>
+        <br />
+        {!state.game_start ? <p className="loadingMessage">{state.loadingMessage}</p> : ''}
     </div>
 );
 
