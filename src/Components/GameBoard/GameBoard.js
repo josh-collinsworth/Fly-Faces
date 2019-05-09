@@ -233,7 +233,9 @@ class GameBoard extends React.Component {
                 fetch(`api/initial_auth.js?auth_code=${authCode}`)
                 .then(response => response.json())
                 .then(jsonResponse => {
+                    console.log(jsonResponse);
                     let response = JSON.parse(jsonResponse);
+                    console.log(response);
                     if (response.access_token) {
                         accessToken = response.access_token;
                         localStorage.setItem('flyfacesrefreshtoken', response.refresh_token);
