@@ -236,7 +236,7 @@ class GameBoard extends React.Component {
                     console.log(jsonResponse);
                     let response = JSON.parse(jsonResponse);
                     if(response.error){
-                        this.setState({ loadingMessage: response.error });
+                        this.setState({ loadingMessage: `Error: ${response.error}` });
                         if(response.error_description){
                             this.setState({ loadingMessage: this.state.loadingMessage + ' - ' + JSON.stringify(response.error_description) });
                         }
