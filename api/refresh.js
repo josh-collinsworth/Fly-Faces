@@ -4,7 +4,6 @@ module.exports = (req, res) => {
 
     //Change this for local development
     const appURL = `https://fly-faces.now.sh`;
-
     const https = require('https');
     const url = require('url');
 
