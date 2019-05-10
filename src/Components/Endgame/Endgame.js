@@ -22,7 +22,7 @@ class Endgame extends React.Component {
                 </p>
                 <p>Your final score: <strong>{final.score.right} out of {final.score.right + final.score.wrong}</strong>
                     <br /><strong>{(100 / (final.score.right + final.score.wrong) * final.score.right).toFixed(2) }% correct.</strong></p>
-                {percent == 100 ? <p><strong><span role="img" alt="" aria-label="Trophy">🏆</span> FLAWLESS VICTORY <span role="img" alt="" aria-label="Trophy">🏆</span></strong></p> : ''}
+                {percent === 100 ? <h2><strong><span role="img" alt="" aria-label="Trophy">🏆</span> FLAWLESS VICTORY <span role="img" alt="" aria-label="Trophy">🏆</span></strong></h2> : ''}
                 {percent > 100 ? <p>Cheatin', huh?</p> : ''}
                 {percent >= 90 && percent <= 100 && final.score.right + final.score.wrong >= 9 ? <p><strong>Awesome work!</strong> Give yourself a fly five! (Don't really; that would be weird. But still: great job.) <span role="img" alt="" aria-label="Party!">🎉🤩🤓</span></p> : ''}
                 {percent >= 90 && percent <= 100 && final.score.right + final.score.wrong <= 9 ? <p><strong>Awesome work!</strong> (I mean, that was a short game, but still: great job!) <span role="img" alt="" aria-label="Party!">🎉</span></p> : ''}
