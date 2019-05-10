@@ -240,6 +240,9 @@ class GameBoard extends React.Component {
                         if(response.error_description){
                             this.setState({ loadingMessage: this.state.loadingMessage + ' - ' + JSON.stringify(response.error_description) });
                         }
+                        if (response.error_description.includes('access grant has expired')){
+                            this.initialize(true);
+                        }
                         return;
                     }
                     if (response.access_token) {
