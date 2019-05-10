@@ -58,6 +58,5 @@ typings/
 
 # dotenv environment variables file
 .env
-now.json
 
 .DS_Store
