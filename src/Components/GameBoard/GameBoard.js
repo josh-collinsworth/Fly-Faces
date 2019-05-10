@@ -260,8 +260,8 @@ class GameBoard extends React.Component {
                 });
                 setTimeout(() => {
                     this.setState({
-                        loadingMessage: `🔜 Getting Fly Faces (this may take a moment...)`  
-                    })
+                        loadingMessage: `🔜 Retrieving Namely API data (might take a moment…)`  
+                    });
                 }, 1500)
                 console.log(`[Fly Faces] Making the API Call...`);
                 fetch(`/api/api_call.js?token=${token}`)
@@ -302,7 +302,7 @@ class GameBoard extends React.Component {
                 recent_faces: [],
                 last_face: {},
                 new_hires: false,
-                random_face: { name: "b", img: "p", role: "m", department: "t" },
+                random_face: { name: "b", img: "/p", role: "m", department: "t" },
                 mode: 'normal',
                 show_role: true,
                 avoid_repeats: true,
