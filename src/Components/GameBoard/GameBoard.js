@@ -227,7 +227,7 @@ class GameBoard extends React.Component {
                 this.setState({ loadingMessage: `🔎 Verifying Namely authentication…` });
 
                 if (!window.location.href.match(/\?code=[a-zA-Z0-9]+/) || initError) {
-                    window.location.replace(`https://getflywheel.namely.com/api/v1/oauth2/authorize?response_type=code&client_id=aLqEQUSDghqvKamgshUfsn5sxtpg9FsUGT3Mv0ZLRGyOSJOOp6F784uR6gTG3ucl&redirect_uri=${this.props.appProtocol}%3A%2F%2F${this.props.appDomain}`)
+                    window.location.replace(`https://getflywheel.namely.com/api/v1/oauth2/authorize?response_type=code&client_id=kuzrsHJeAi7ogEnl99ci9v3ePJeaHim8wbG0erKzcP3WRonP8aTgPHdfuV3diCx9&redirect_uri=${this.props.appProtocol}%3A%2F%2F${this.props.appDomain}`)
                 }
 
                 console.log('[Fly Faces] No refresh token; authenticating');
