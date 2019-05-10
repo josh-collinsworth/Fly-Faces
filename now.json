@@ -3,6 +3,10 @@
     "alias": [
         "fly-faces.now.sh"
     ],
+    "env": {
+        "CLIENT_ID": "@namely_client_id",
+        "CLIENT_SECRET": "@namely_client_secret"
+    },
     "github": {
         "autoAlias": true
     },

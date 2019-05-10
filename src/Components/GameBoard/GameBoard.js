@@ -197,7 +197,7 @@ class GameBoard extends React.Component {
             this.pickAFace();
         }, 120);
     }
-    initialize = (error = false) => {
+    initialize = (initError = false) => {
         this.loadStart();
         setTimeout(() => {
 
@@ -206,18 +206,19 @@ class GameBoard extends React.Component {
             if (authCode) authCode = authCode[1];
             const refresh_token = localStorage.getItem('flyfacesrefreshtoken');
             let accessToken;
-            let fullAPIResponse = [];
 
             if (refresh_token) { // This ain't our first rodeo, so we just need to re-auth with the refresh token
                 this.setState({loadingMessage: `🔁 Re-authenticating with Namely…`});
                 console.log('[Fly Faces] Token found; pinging Namely')
                 fetch(`api/refresh.js?refresh_token=${refresh_token}`)
-                    .then(response => {
-                        return response.json()
-                    })
-                    .then(response => {
-                        let jsonResponse = JSON.parse(response);
-                        const access_token = jsonResponse.access_token;
+                    .then(response => response.json())
+                    .then(jsonResponse => {
+                        let response = JSON.parse(jsonResponse);
+                        if(response.error){
+                            this.setState({ loadingMessage: `Error: ${response.error}`});
+                            return;
+                        }
+                        const access_token = response.access_token;
                         makeTheAPICall(access_token);
                     });
 
@@ -225,7 +226,7 @@ class GameBoard extends React.Component {
 
                 this.setState({ loadingMessage: `🔎 Verifying Namely authentication…` });
 
-                if (!window.location.href.match(/\?code=[a-zA-Z0-9]+/) || error) {
+                if (!window.location.href.match(/\?code=[a-zA-Z0-9]+/) || initError) {
                     window.location.replace(`https://getflywheel.namely.com/api/v1/oauth2/authorize?response_type=code&client_id=aLqEQUSDghqvKamgshUfsn5sxtpg9FsUGT3Mv0ZLRGyOSJOOp6F784uR6gTG3ucl&redirect_uri=${this.props.appProtocol}%3A%2F%2F${this.props.appDomain}`)
                 }
 
@@ -234,7 +235,7 @@ class GameBoard extends React.Component {
                 .then(response => response.json())
                 .then(jsonResponse => {
                     let response = JSON.parse(jsonResponse);
-                    if(response.error){
+                    if(response.error && !initError){
                         this.setState({ loadingMessage: `Error: ${response.error}` });
                         if(response.error_description){
                             this.setState({ loadingMessage: this.state.loadingMessage + ' - ' + JSON.stringify(response.error_description) });
@@ -251,7 +252,6 @@ class GameBoard extends React.Component {
                     }
                 });
             }
-            
             
             //This function does most of our authentication heavy lifting
             let makeTheAPICall = (token) => {
