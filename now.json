@@ -22,5 +22,16 @@
             "src": "api/*.js",
             "use": "@now/node"
         }
+    ],
+    "routes": [
+        {
+            "src": "/.*",
+            "headers": {
+                "X-Content-Type-Options": "nosniff",
+                "X-Frame-Options": "SAMEORIGIN",
+                "X-XSS-Protection": "1; mode=block"
+            },
+            "continue": true
+        }
     ]
 }
