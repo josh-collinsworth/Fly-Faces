@@ -1,6 +1,9 @@
 module.exports = (req, res) => {
 
-    //This Node file reaches out to Namely when a refresh token is provided for quick authentication
+    //NOTE: this file is no longer used by the application, and is left only for posterity purposes.
+    //It was previously used to avoid re-auth for a user by using a refresh_token stored in the browser; however; it has been decided that this is not optimally secure.
+
+    //This Node file reaches out to Namely when a refresh token is provided for quick authentication 
 
     const https = require('https');
     const url = require('url');
