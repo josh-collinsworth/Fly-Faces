@@ -208,19 +208,26 @@ class GameBoard extends React.Component {
             let accessToken;
 
             if (refresh_token) { // This ain't our first rodeo, so we just need to re-auth with the refresh token
-                this.setState({loadingMessage: `🔁 Re-authenticating with Namely…`});
-                console.log('[Fly Faces] Token found; pinging Namely')
-                fetch(`api/refresh.js?refresh_token=${refresh_token}`)
-                    .then(response => response.json())
-                    .then(jsonResponse => {
-                        let response = JSON.parse(jsonResponse);
-                        if(response.error){
-                            this.setState({ loadingMessage: `Error: ${response.error}`});
-                            return;
-                        }
-                        const access_token = response.access_token;
-                        makeTheAPICall(access_token);
-                    });
+
+                // AAAACTUALLY this is not good practice. Removing from the app for security's sake; leaving commented out for posterity.
+
+                localStorage.removeItem('flyfacesrefreshtoken');
+                this.initialize();
+                return;
+
+                // this.setState({loadingMessage: `🔁 Re-authenticating with Namely…`});
+                // console.log('[Fly Faces] Token found; pinging Namely')
+                // fetch(`api/refresh.js?refresh_token=${refresh_token}`)
+                //     .then(response => response.json())
+                //     .then(jsonResponse => {
+                //         let response = JSON.parse(jsonResponse);
+                //         if(response.error){
+                //             this.setState({ loadingMessage: `Error: ${response.error}`});
+                //             return;
+                //         }
+                //         const access_token = response.access_token;
+                //         makeTheAPICall(access_token);
+                //     });
 
             } else { // No refresh token; going at this like it may be the first time
 
@@ -247,7 +254,7 @@ class GameBoard extends React.Component {
                     }
                     if (response.access_token) {
                         accessToken = response.access_token;
-                        localStorage.setItem('flyfacesrefreshtoken', response.refresh_token);
+                        //localStorage.setItem('flyfacesrefreshtoken', response.refresh_token);
                         makeTheAPICall(accessToken);
                     } else {
                         this.initialize(true);
