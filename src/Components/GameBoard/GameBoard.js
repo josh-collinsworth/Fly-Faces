@@ -280,9 +280,15 @@ class GameBoard extends React.Component {
                     if(finalArray.length >= 245){
                         alert(`UH OH! Looks like Flywheel's grown beyond what this app can handle in its current build! Please let Josh Collinsworth know so he can fix that. Meanwhile: some of the newest employees might not show up in the game.`)
                     }
-                    this.setState({ loadingMessage: '💥 Ready!' });
-                    this.setState({ fly_faces: finalArray });
+                    this.setState({ 
+                        loadingMessage: '💥 Ready!', 
+                        fly_faces: finalArray, 
+                        loading: false 
+                    });
                     this.setARandomFace();
+                }).catch(err => {
+                    this.setState({ loadingMessage: `⚠️ Oops! Something went wrong. Try refreshing, or check the console for more info.`   });
+                    console.log(err);
                 });
             }
         }, 200);
