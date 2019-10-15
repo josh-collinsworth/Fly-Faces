@@ -93,7 +93,8 @@ class GameBoard extends React.Component {
                 right: 0,
                 wrong: 0,
             },
-            game_start: true
+            game_start: true,
+            loadingMessage: this.randomEmojiFace() + ' Getting a random Fly Face…'
         });
         this.randomSelection({ right: 0, wrong: 0 });
         setTimeout(()=>{
@@ -104,7 +105,14 @@ class GameBoard extends React.Component {
             options.style.display = 'none';
         },500)
     }
-
+    randomEmojiFace = () => {
+        const faces = ['👧🏽','👩','👦🏾','👨🏽','👩🏿‍🦱','👨🏾‍🦱','👩🏽‍🦰','👱🏾‍','️👱🏽‍','️👩🏾‍🦲','👨🏽‍🦲','🧔🏼','👵🏾','🧓🏼','👳🏾‍','👳🏿‍','👩','🧕🏾','👷🏽‍','️💂🏼‍','️💂🏻‍️','👨🏼‍🍳','👩🏻‍🎓','👩🏽‍🎤','👨🏽‍🏭','👩🏼‍💻','👨🏾‍💻','👩🏽‍🔬','👨🏾‍🚀','👰🏽','🤵🏻','🧛🏻‍️','🧝🏾‍'];
+        const randomFaceIndex = Math.floor(Math.random() * (faces.length - 1));
+        return faces[randomFaceIndex];
+    }
+    imageError = () => {
+        this.setState({ loadingMessage: '❌ Unable to load the image. Try refreshing. If this keeps happening, let Collinsworth know about it.' })
+    }
     handleGameModeChange = (e) => {
         this.setState({ game_mode: e.target.value });
         if(e.target.value !== 'team'){
@@ -185,6 +193,7 @@ class GameBoard extends React.Component {
             dot.style.backgroundColor = this.state.current_color;
         }
         if(!this.state.loading){
+            this.setState({ loadingMessage: this.randomEmojiFace() + ' Getting a random Fly Face…' })
             this.loadStart();
         }
         setTimeout(()=>{
@@ -260,6 +269,10 @@ class GameBoard extends React.Component {
                         this.initialize(true);
                         return;
                     }
+                })
+                .catch(error => {
+                    this.setState({ loadingMessage: `❌ Namely Authentication Error. Try refreshing. If that doesn't help, clear you browser cache, and/or or see the console for more details.`});
+                    console.log(error);
                 });
             }
             
@@ -347,7 +360,7 @@ class GameBoard extends React.Component {
                 <Endgame state={this.state} resetBoardForNewGame={this.resetBoardForNewGame}/>
                 <Options getReady={this.getReady} ready={this.state.ready} handleNewHires={this.handleNewHires} handleColorize={this.handleColorize} handleGameModeChange={this.handleGameModeChange} state={this.state} handleModeChange={this.handleModeChange} handleRoleChange={this.handleRoleChange} handleFilterChange={this.handleFilterChange} handleRepeatsChange={this.handleRepeatsChange} handleNarrowChange={this.handleNarrowChange} handleNarrowNumberChange={this.handleNarrowNumberChange} newGame={this.newGame}/>
                 <Header score={this.state.score} countdown={this.state.final_countdown}/>
-                <Face name={this.state.random_face.name} image={this.state.random_face.img} role={this.state.random_face.role} department={this.state.random_face.department} key={this.state.random_face.name} state={this.state} next={this.randomSelection}  randomSelection={this.randomSelection} loadStart={this.loadStart} loadFinish={this.loadFinish}/>
+                <Face name={this.state.random_face.name} image={this.state.random_face.img} role={this.state.random_face.role} department={this.state.random_face.department} key={this.state.random_face.name} state={this.state} next={this.randomSelection}  randomSelection={this.randomSelection} loadStart={this.loadStart} loadFinish={this.loadFinish} imageError={this.imageError}/>
             </div>
         );
     }
