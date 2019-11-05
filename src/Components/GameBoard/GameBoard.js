@@ -111,7 +111,7 @@ class GameBoard extends React.Component {
         return faces[randomFaceIndex];
     }
     imageError = () => {
-        this.setState({ loadingMessage: '❌ Unable to load the image. Try refreshing. If this keeps happening, let Collinsworth know about it.' })
+        this.setState({ loadingMessage: '❌ Unable to load the image. Try refreshing. If this keeps happening, let Collinsworth know about it. NOTE: blocking cookies will prevent this from working!' })
     }
     handleGameModeChange = (e) => {
         this.setState({ game_mode: e.target.value });

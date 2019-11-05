@@ -70,7 +70,7 @@ class AnswerBox extends React.Component {
                     || (fullName === 'Daniel Fitch' && entered.match(/^(Dad Fish|Dan)/i))
                     || (fullName === 'Eric Swanson' && entered.match(/^DJ ?Sweetlife/i))
                     || (fullName === 'Genevieve Bachinski' && entered.match(/^Genny Cash/i))
-                    || (fullName === 'Kristin Wittkamp' && entered.match(/^Stevie Kicks/i))
+                    || (fullName === 'Kristin Wittkamp' && entered.match(/^(Stevie Kicks|Krintin)/i))
                     || (fullName === 'Joey Teng' && entered.match(/^Croix ?boi/i))
                     || (fullName === 'Juan Aguero' && entered.match(/^Obi Juan/i))
                     || (fullName === 'Win Tong' && entered.match(/^Nguyen/i))
