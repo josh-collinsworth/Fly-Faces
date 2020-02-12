@@ -75,7 +75,7 @@ class Options extends React.Component {
                             <div className="option-group">
                                 <input type="radio" name="game-mode" id="newbies" value="newbies" onChange={this.props.handleGameModeChange} checked={this.props.state.game_mode === 'newbies'} />
                                 <label htmlFor="newbies" >{this.props.state.game_mode === 'newbies' ? <span role="img" alt="" aria-label="Hatching chick">🐣</span> : uncheckedRadio()}<strong>Newbies </strong></label>
-                                {this.props.state.game_mode === 'newbies' ? <div><p className="added-info"><small>20 of our 50 *newest* employees</small></p><input type="range" id="new-hire-count" value={this.props.state.new_hire_count} min="20" max="50" /><label htmlFor="new-hire-count">Most recent {this.props.new_hire_count}</label></div> : ''}
+                                {this.props.state.game_mode === 'newbies' ? <div><p className="added-info"><small>20 of our *newest* employees</small></p><input type="range" id="new-hire-count" onChange={this.props.handleNewHireCountChange} value={this.props.state.new_hire_count} min="20" max="50" /><label htmlFor="new-hire-count">Show most recent {this.props.new_hire_count} hires</label></div> : ''}
                             </div>
                             <div className="option-group">
                                 <input type="radio" name="game-mode" id="ogs" value="ogs" onChange={this.props.handleGameModeChange} checked={this.props.state.game_mode === 'ogs'} />

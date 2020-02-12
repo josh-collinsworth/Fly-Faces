@@ -61,6 +61,9 @@ class GameBoard extends React.Component {
         this.setState({ filter: e.target.value });
         this.setRepeatCount();
     }
+    handleNewHireCountChange = (e) => {
+        this.setState({ new_hire_count: e.target.value })
+    }
     handleRepeatsChange = (e) => {
         this.state.avoid_repeats === true ? this.setState({avoid_repeats: false}) : this.setState({avoid_repeats: true});
         this.setRepeatCount();
@@ -363,7 +366,7 @@ class GameBoard extends React.Component {
             <div id="game-board">
                 <Loader state={this.state}/>
                 <Endgame state={this.state} resetBoardForNewGame={this.resetBoardForNewGame}/>
-                <Options getReady={this.getReady} ready={this.state.ready} handleNewHires={this.handleNewHires} handleColorize={this.handleColorize} handleGameModeChange={this.handleGameModeChange} state={this.state} handleModeChange={this.handleModeChange} handleRoleChange={this.handleRoleChange} handleFilterChange={this.handleFilterChange} handleRepeatsChange={this.handleRepeatsChange} handleNarrowChange={this.handleNarrowChange} handleNarrowNumberChange={this.handleNarrowNumberChange} newGame={this.newGame}/>
+                <Options getReady={this.getReady} ready={this.state.ready} handleNewHires={this.handleNewHires} handleColorize={this.handleColorize} handleGameModeChange={this.handleGameModeChange} state={this.state} handleModeChange={this.handleModeChange} handleRoleChange={this.handleRoleChange} handleFilterChange={this.handleFilterChange} handleRepeatsChange={this.handleRepeatsChange} handleNarrowChange={this.handleNarrowChange} handleNarrowNumberChange={this.handleNarrowNumberChange} newGame={this.newGame} handleNewHireCountChange={this.handleNewHireCountChange}/>
                 <Header score={this.state.score} countdown={this.state.final_countdown}/>
                 <Face name={this.state.random_face.name} image={this.state.random_face.img} role={this.state.random_face.role} department={this.state.random_face.department} key={this.state.random_face.name} state={this.state} next={this.randomSelection}  randomSelection={this.randomSelection} loadStart={this.loadStart} loadFinish={this.loadFinish} imageError={this.imageError}/>
             </div>
