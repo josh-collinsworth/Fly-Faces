@@ -26,7 +26,7 @@ class GameBoard extends React.Component {
             recent_faces: [],
             last_face: {},
             new_hires: false,
-            new_hire_count: 50,
+            new_hire_count: 35,
 
             mode: 'normal',
             show_role: true,

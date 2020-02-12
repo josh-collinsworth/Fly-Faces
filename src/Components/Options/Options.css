@@ -128,7 +128,7 @@ button:focus {
 
 .highlight {
     font-weight: bold;
-    color: #f0ce15;
+    color: #f0ce15!important;
 }
 
 input[type=number]{
