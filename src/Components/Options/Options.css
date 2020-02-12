@@ -172,6 +172,10 @@ select:disabled {
     font-weight: bold;
 }
 
+.sublabel {
+    filter: brightness(4);
+}
+
 #filter-group small {
     margin: .5rem 0 .3rem 1.65rem;
 }
