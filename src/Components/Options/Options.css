@@ -6,7 +6,7 @@
     min-height: 100vh;
     width: 100vw;
     background: #01516e;
-    transition: left .2s ease-in-out;   
+    transition: left .2s ease-in-out;
     display: flex;
     justify-content: center;
     align-content: flex-start;
@@ -152,7 +152,7 @@ select:disabled {
     text-align: left;
 }
 
-p.added-info {
+.added-info {
     width: 100%;
     margin: 0 0 .6rem 1.4rem;
     text-align: left;
