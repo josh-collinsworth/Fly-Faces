@@ -279,7 +279,7 @@ class GameBoard extends React.Component {
                     }
                 })
                 .catch(error => {
-                    this.setState({ loadingMessage: `❌ Namely Authentication Error. Try refreshing. If that doesn't help, clear you browser cache, and/or or see the console for more details.`});
+                    this.setState({ loadingMessage: `❌ Namely Authentication Error. Try refreshing, and be sure nothing is blocking cookies. If that doesn't help, clear you browser cache, and/or or see the console for more details.`});
                     console.log(error);
                 });
             }

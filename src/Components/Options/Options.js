@@ -82,7 +82,9 @@ class Options extends React.Component {
                                         </p>
                                         <div className="added-info">
                                             <label htmlFor="new-hire-count"><small>How new?</small></label>
+                                            <span aria-label="fewer">➖</span>
                                             <input type="range" id="new-hire-count" onChange={this.props.handleNewHireCountChange} value={this.props.state.new_hire_count} min="20" max="50" />
+                                            <span aria-label="more">➕</span>
                                         </div>
                                     </div>
                                 : ''}
