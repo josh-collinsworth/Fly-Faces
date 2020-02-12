@@ -55,7 +55,7 @@ class Options extends React.Component {
         return (
             <aside id="options" className={this.props.state.game_start ? 'started' : ''}>
                 <div className="options-container">
-                                    
+
                     <section id="game-mode-section">
 
                         <h2>Game mode:</h2>
@@ -75,7 +75,7 @@ class Options extends React.Component {
                             <div className="option-group">
                                 <input type="radio" name="game-mode" id="newbies" value="newbies" onChange={this.props.handleGameModeChange} checked={this.props.state.game_mode === 'newbies'} />
                                 <label htmlFor="newbies" >{this.props.state.game_mode === 'newbies' ? <span role="img" alt="" aria-label="Hatching chick">🐣</span> : uncheckedRadio()}<strong>Newbies </strong></label>
-                                {this.props.state.game_mode === 'newbies' ? <p className="added-info"><small>20 of our 50 *newest* employees</small></p> : ''}
+                                {this.props.state.game_mode === 'newbies' ? <div><p className="added-info"><small>20 of our 50 *newest* employees</small></p><input type="range" id="new-hire-count" value={this.props.state.new_hire_count} min="20" max="50" /><label htmlFor="new-hire-count">Most recent {this.props.new_hire_count}</label></div> : ''}
                             </div>
                             <div className="option-group">
                                 <input type="radio" name="game-mode" id="ogs" value="ogs" onChange={this.props.handleGameModeChange} checked={this.props.state.game_mode === 'ogs'} />
@@ -88,7 +88,7 @@ class Options extends React.Component {
                                 {this.props.state.game_mode === 'team' ? <p className="added-info"><small>Run through every member of a single team</small></p> : ''}
                             </div>
 
-                            {this.props.state.game_mode === 'team' ? 
+                            {this.props.state.game_mode === 'team' ?
                                 <div id="filter-group" className="option-group">
                                     {/* <label htmlFor="team-filter"><small>Choose your team:</small></label> */}
                                     <select id="team-filter" onChange={this.handleFilterChange} required>
@@ -104,13 +104,13 @@ class Options extends React.Component {
                                         <option value="North America Support">North America Support</option>
                                         <option value="Europe Support">Europe Support</option>
                                         <option value="Finance">Finance</option>
-                                        <option value="Product">Product</option>                            
+                                        <option value="Product">Product</option>
                                     </select>
                                     {this.props.state.filter ? <small>Team size/game length: {this.props.state.final_countdown}</small> : ''}
-                                </div>  
+                                </div>
 
                             : '' }
-                            
+
                         </div>
 
                     </section>
@@ -154,7 +154,7 @@ class Options extends React.Component {
                             <div id="show-role-group" className="option-group">
                                 <input type="checkbox" id="show-role" onChange={this.handleRoleChange} checked={this.props.state.show_role}/>
                                 <label htmlFor="show-role" >{this.props.state.show_role === true ? checkedBox() : uncheckedBox()}Always show role and team&ensp;<small>(If available)</small></label>
-                            </div>      
+                            </div>
 
                             <div id="colorize-group" className="option-group">
                                 <input type="checkbox" id="colorize" onChange={this.handleColorize} checked={this.props.state.colorize} />
@@ -171,13 +171,13 @@ class Options extends React.Component {
 
                     </section>
 
-                    <hr />  
+                    <hr />
 
                     <div id="reset-group" className="option-group">
                         {this.props.ready ? <p role="alert">Ready?</p> : ''}
                         <button id="reset" onClick={this.handleNewGame}>
                             {this.props.ready ? 'Yes, ' : null}Let's Go!
-                        
+
                         </button>
                     </div>
 

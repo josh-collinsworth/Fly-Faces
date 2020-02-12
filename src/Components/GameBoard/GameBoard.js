@@ -26,13 +26,14 @@ class GameBoard extends React.Component {
             recent_faces: [],
             last_face: {},
             new_hires: false,
+            new_hire_count: 50,
 
             mode: 'normal',
             show_role: true,
 
             avoid_repeats: true,
             repeat_limit: 20,
-            
+
             filter: false,
             narrow: false,
             narrow_count: 20,
@@ -135,7 +136,7 @@ class GameBoard extends React.Component {
             default:
                 this.setState({ final_countdown: 15, repeat_limit: 15 });
         }
-    } 
+    }
     handleColorize = () => {
         this.setState({ colorize: this.state.colorize ? false : true });
     }
@@ -153,8 +154,8 @@ class GameBoard extends React.Component {
         const x = Math.floor(Math.random() * (length + 1));
         if (
             //Either there is no filter, or there is and the picked face matches the filter
-            ((!this.state.filter || (this.state.fly_faces[x].department === this.state.filter)) 
-            && 
+            ((!this.state.filter || (this.state.fly_faces[x].department === this.state.filter))
+            &&
             //Either we're avoiding repeats, or we're not but it's ok because we haven't seen this face yet
             (this.state.avoid_repeats === false || !this.state.recent_faces.includes(x)))
             &&
@@ -165,7 +166,7 @@ class GameBoard extends React.Component {
             &&
             (this.state.game_mode !== 'ogs' || x <= 50)
             &&
-            (this.state.game_mode !== 'newbies' || x >= (this.state.fly_faces.length - 50))
+            (this.state.game_mode !== 'newbies' || x >= (this.state.fly_faces.length - this.state.new_hire_count))
         ) {
             randomFace = this.state.fly_faces[x];
             if(this.state.avoid_repeats){
@@ -248,8 +249,12 @@ class GameBoard extends React.Component {
 
                 console.log('[Fly Faces] No refresh token; authenticating');
                 fetch(`api/initial_auth.js?auth_code=${authCode}`)
-                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                    return response.json()
+                })
                 .then(jsonResponse => {
+                    console.log(jsonResponse)
                     let response = JSON.parse(jsonResponse);
                     if(response.error && !initError){
                         this.setState({ loadingMessage: `Error: ${response.error}` });
@@ -275,7 +280,7 @@ class GameBoard extends React.Component {
                     console.log(error);
                 });
             }
-            
+
             //This function does most of our authentication heavy lifting
             let makeTheAPICall = (token) => {
                 this.setState({
@@ -283,7 +288,7 @@ class GameBoard extends React.Component {
                 });
                 setTimeout(() => {
                     this.setState({
-                        loadingMessage: `🔜 Retrieving Namely API data (might take a moment…)`  
+                        loadingMessage: `🔜 Retrieving Namely API data (might take a moment…)`
                     });
                 }, 1500)
                 console.log(`[Fly Faces] Making the API Call...`);
@@ -293,10 +298,10 @@ class GameBoard extends React.Component {
                     if(finalArray.length >= 245){
                         alert(`UH OH! Looks like Flywheel's grown beyond what this app can handle in its current build! Please let Josh Collinsworth know so he can fix that. Meanwhile: some of the newest employees might not show up in the game.`)
                     }
-                    this.setState({ 
-                        loadingMessage: '💥 Ready!', 
-                        fly_faces: finalArray, 
-                        loading: false 
+                    this.setState({
+                        loadingMessage: '💥 Ready!',
+                        fly_faces: finalArray,
+                        loading: false
                     });
                     this.setARandomFace();
                 }).catch(err => {
@@ -320,7 +325,7 @@ class GameBoard extends React.Component {
         this.setARandomFace();
         const options = document.querySelector('#options');
         options.style.display = 'flex';
-        
+
         setTimeout(() => {
             this.setState({
                 game_start: false,
@@ -348,7 +353,7 @@ class GameBoard extends React.Component {
                 the_end: false
             });
         }, 200);
-        
+
     }
     getReady = (ready) => {
         this.setState({ready: ready});
