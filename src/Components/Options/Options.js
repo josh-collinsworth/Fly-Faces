@@ -78,10 +78,10 @@ class Options extends React.Component {
                                 {this.props.state.game_mode === 'newbies' ?
                                     <div>
                                         <p className="added-info">
-                                            <small>20 of our {this.props.state.new_hire_count} *newest* employees</small>
+                                            <small>20 of our <span className="highlight">{this.props.state.new_hire_count}</span>*newest* employees</small>
                                         </p>
                                         <div className="added-info">
-                                            <label htmlFor="new-hire-count">How new?</label>
+                                            <label htmlFor="new-hire-count"><small>How new?</small></label>
                                             <input type="range" id="new-hire-count" onChange={this.props.handleNewHireCountChange} value={this.props.state.new_hire_count} min="20" max="50" />
                                         </div>
                                     </div>
