@@ -78,7 +78,7 @@ class Options extends React.Component {
                                 {this.props.state.game_mode === 'newbies' ?
                                     <div>
                                         <p className="added-info">
-                                            <small>20 of our <strong style="color: #f0ce15">{this.props.state.new_hire_count}</strong>*newest* employees</small>
+                                            <small>20 of our {this.props.state.new_hire_count} *newest* employees</small>
                                         </p>
                                         <div className="added-info">
                                             <label htmlFor="new-hire-count">How new?</label>

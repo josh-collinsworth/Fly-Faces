@@ -126,6 +126,11 @@ button:focus {
     border-color: #f0ce15;
 }
 
+.highlight {
+    font-weight: bold;
+    color: #f0ce15;
+}
+
 input[type=number]{
     color: #fff;
     background: none;
